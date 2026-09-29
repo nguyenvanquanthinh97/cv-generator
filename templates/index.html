@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CV Editor</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <h1>CV Editor</h1>
+    <div class="actions">
+      <span id="status" class="status"></span>
+      <button id="saveBtn" class="btn">Save</button>
+      <button id="renderBtn" class="btn primary">Render PDF</button>
+      <a id="downloadBtn" class="btn" href="/api/pdf" download>Download PDF</a>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="editor">
+
+      <fieldset class="card">
+        <legend>Basic Info</legend>
+        <div class="photo_row">
+          <img id="photo_preview" class="photo_preview" alt="Profile photo" hidden>
+          <div class="photo_controls">
+            <label class="btn small" for="f_photo_input">Upload photo</label>
+            <input id="f_photo_input" type="file" accept=".jpg,.jpeg,.png" hidden>
+            <button type="button" id="photo_remove" class="btn small danger" hidden>Remove photo</button>
+          </div>
+        </div>
+        <div class="grid2">
+          <label>Full name <input id="f_name" type="text"></label>
+          <label>Headline <input id="f_headline" type="text"></label>
+          <label>Location <input id="f_location" type="text"></label>
+          <label>Email <input id="f_email" type="email"></label>
+          <label>Phone <input id="f_phone" type="text"></label>
+          <label>Website <input id="f_website" type="text"></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Social Networks</legend>
+        <p class="hint">LinkedIn username is taken from your profile URL (e.g. the part after <code>linkedin.com/in/</code>).</p>
+        <div id="social_list"></div>
+        <button type="button" class="btn small" data-add="social">+ Add social network</button>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Summary</legend>
+        <label>Short professional summary (optional, blank line = new paragraph)
+          <textarea id="f_summary" rows="3"></textarea>
+        </label>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Experience</legend>
+        <div id="experience_list"></div>
+        <button type="button" class="btn small" data-add="experience">+ Add experience</button>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Education</legend>
+        <div id="education_list"></div>
+        <button type="button" class="btn small" data-add="education">+ Add education</button>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Skills</legend>
+        <div id="skills_list"></div>
+        <button type="button" class="btn small" data-add="skills">+ Add skill group</button>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Certifications</legend>
+        <p class="hint">Add a URL to make the certificate name a clickable link (e.g. your LinkedIn certifications page).</p>
+        <div id="certifications_list"></div>
+        <button type="button" class="btn small" data-add="certifications">+ Add certification</button>
+      </fieldset>
+
+      <fieldset class="card">
+        <legend>Design</legend>
+        <label>Theme
+          <select id="f_theme">
+            {% for t in themes %}
+            <option value="{{ t }}">{{ t }}</option>
+            {% endfor %}
+          </select>
+        </label>
+      </fieldset>
+
+    </section>
+
+    <section class="preview">
+      <div class="preview_header">
+        <h2>Preview</h2>
+        <span id="renderLog" class="log"></span>
+      </div>
+      <div id="preview_pages" class="preview_pages">
+        <p class="hint">Click "Render PDF" to generate a preview.</p>
+      </div>
+    </section>
+  </main>
+</div>
+
+<template id="tpl_social">
+  <div class="row" data-row>
+    <select data-field="network">
+      <option>LinkedIn</option>
+      <option>GitHub</option>
+      <option>GitLab</option>
+      <option>X</option>
+      <option>StackOverflow</option>
+      <option>Google Scholar</option>
+      <option>Instagram</option>
+      <option>YouTube</option>
+      <option>Telegram</option>
+      <option>Reddit</option>
+      <option>Bluesky</option>
+      <option>Mastodon</option>
+      <option>ORCID</option>
+      <option>ResearchGate</option>
+      <option>Leetcode</option>
+      <option>IMDB</option>
+      <option>WhatsApp</option>
+    </select>
+    <input type="text" data-field="username" placeholder="username">
+    <button type="button" class="btn danger small" data-remove>Remove</button>
+  </div>
+</template>
+
+<template id="tpl_experience">
+  <div class="card sub" data-row>
+    <div class="grid2">
+      <label>Company <input type="text" data-field="company"></label>
+      <label>Position <input type="text" data-field="position"></label>
+      <label>Subtitle / summary <input type="text" data-field="summary"></label>
+      <label>Location <input type="text" data-field="location"></label>
+      <label>Start date <input type="text" data-field="start_date" placeholder="YYYY-MM"></label>
+      <label>End date <input type="text" data-field="end_date" placeholder="YYYY-MM or present"></label>
+    </div>
+    <label>Highlights (one per line)
+      <textarea rows="4" data-field="highlights"></textarea>
+    </label>
+    <button type="button" class="btn danger small" data-remove>Remove experience</button>
+  </div>
+</template>
+
+<template id="tpl_education">
+  <div class="card sub" data-row>
+    <div class="grid2">
+      <label>Institution <input type="text" data-field="institution"></label>
+      <label>Area of study <input type="text" data-field="area"></label>
+      <label>Degree <input type="text" data-field="degree"></label>
+      <label>Start date <input type="text" data-field="start_date" placeholder="YYYY-MM"></label>
+      <label>End date <input type="text" data-field="end_date" placeholder="YYYY-MM"></label>
+    </div>
+    <label>Highlights (one per line)
+      <textarea rows="2" data-field="highlights"></textarea>
+    </label>
+    <button type="button" class="btn danger small" data-remove>Remove education</button>
+  </div>
+</template>
+
+<template id="tpl_skills">
+  <div class="row" data-row>
+    <input type="text" data-field="label" placeholder="Label (e.g. Languages)">
+    <input type="text" data-field="details" placeholder="Details (comma separated)">
+    <button type="button" class="btn danger small" data-remove>Remove</button>
+  </div>
+</template>
+
+<template id="tpl_certifications">
+  <div class="card sub" data-row>
+    <div class="grid2">
+      <label>Certificate name <input type="text" data-field="name"></label>
+      <label>Date <input type="text" data-field="date" placeholder="YYYY"></label>
+    </div>
+    <label>URL (optional) <input type="text" data-field="url" placeholder="https://..."></label>
+    <button type="button" class="btn danger small" data-remove>Remove certification</button>
+  </div>
+</template>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

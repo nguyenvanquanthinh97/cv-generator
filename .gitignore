@@ -1,0 +1,6 @@
+.venv/
+rendercv_output/
+__pycache__/
+*.pyc
+input/
+.agents

@@ -1,0 +1,125 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/rendercv/rendercv/refs/tags/v2.8/schema.json
+cv:
+  name: Nguyễn Văn Quan Thịnh
+  headline: Full-Stack Software Developer
+  location: Ho Chi Minh, Vietnam
+  email: thinh.nvq.js220597@gmail.com
+  phone: '+84981864371'
+  website: null
+  photo: static/uploads/profile.jpg
+  social_networks:
+  - network: LinkedIn
+    username: thịnh-nguyễn-văn-quan-5a471b186
+  - network: GitHub
+    username: nguyenvanquanthinh97
+  sections:
+    experience:
+    - company: CodeLeap
+      position: Software Developer
+      summary: Effect.js & Azure Services Integration
+      start_date: 2025-10
+      end_date: present
+      highlights:
+      - '**Core Development:** Built enterprise software solutions using **Effect.js** for robust, type-safe
+        functional programming and asynchronous workflow management.'
+      - '**Cloud Integration:** Architected and integrated Azure Cloud infrastructure solutions — leveraged
+        **Azure Service Bus** for reliable messaging queues and decoupled microservice communication;
+        implemented real-time messaging and publish-subscribe capabilities using **Azure WebPubSub**,
+        storing documents in **Azure CosmosDB** and managed cloud persistence and object storage using
+        **Azure Storage Accounts**.'
+    - company: OPSWAT
+      position: Software Developer
+      summary: Full-Stack Development & DevOps Implementation
+      start_date: 2023-10
+      end_date: 2024-07
+      highlights:
+      - '**Frontend Development:** Built and optimized React.js applications with Docker containerization,
+        reducing build time by implementing efficient Dockerfile configurations.'
+      - '**Code Quality:** Configured ESLint and Husky for pre-push validation, ensuring consistent code
+        standards across the team.'
+      - '**Developer Experience:** Implemented Storybook for component documentation and improved development
+        workflow.'
+      - '**Backend Development:** Developed and refactored GraphQL APIs using Django, enhancing frontend-backend
+        communication.'
+      - '**DevOps & Security:** Enhanced Docker images with proper user/group configurations for improved
+        security; integrated BlackDuck for automated security scanning of React libraries; configured
+        and stabilized Bitbucket CI/CD pipelines.'
+      - '**Professional Development:** Completed advanced certifications in Linux, Terraform Associate,
+        and Kubernetes.'
+    - company: NAB (National Australia Bank)
+      position: Associate Software Developer
+      summary: Internal Chatbot Platform Development
+      start_date: 2021-08
+      end_date: 2022-08
+      highlights:
+      - '**Core Development:** Built enterprise chatbot solution using Node.js/TypeScript to resolve IT
+        and policy-related queries for internal staff.'
+      - '**Testing & Quality:** Developed comprehensive end-to-end conversation tests, significantly improving
+        code coverage.'
+      - '**Architecture:** Consolidated telemetry clients into unified, configurable logging system with
+        Application Insights integration.'
+      - '**Azure Integration:** Created Azure Functions for data cleaning and ServiceNow synchronization
+        with Luis.ai and QnAMaker.ai; implemented context-switching between Skill Bot and MainBot; set
+        up Azure Monitor alerts for attachment failure notifications.'
+      - '**User Experience:** Developed adaptive cards and Azure Function triggers, enabling users to
+        execute complex tasks with simple clicks.'
+      - '**Maintenance:** Updated deprecated modules and implemented modern coding practices.'
+    - company: Kobiton
+      position: Fresher Software Developer
+      summary: Mobile Testing Platform Enhancement
+      start_date: 2020-09
+      end_date: 2021-04
+      highlights:
+      - '**Form Migration:** Successfully migrated all forms to Formik library, improving form handling
+        and validation.'
+      - '**Bug Resolution:** Identified and fixed critical bugs in long session testing functionality.'
+      - '**API Development:** Built CRUD APIs for device tagging system, enabling better device grouping
+        and management.'
+      - '**Authentication:** Enhanced SSO implementation supporting multiple identity providers (OneLogin,
+        Okta, G Suite, Azure AD).'
+      - '**UI/UX:** Rebuilt and refactored Dynamic Pricing UI with new features and improved user experience.'
+      - '**Mapping & Visualization:** Integrated Mapbox with advanced features including address search,
+        geo-point location services, and crash point rendering for session test analysis.'
+    education:
+    - institution: University of Science
+      area: Information Technology
+      degree: BS
+      start_date: 2016-09
+      end_date: 2020-10
+      highlights:
+      - 'GPA: 3.19 / 4.0'
+    skills:
+    - label: Programming Languages
+      details: JavaScript, TypeScript, Python
+    - label: Frontend Technologies
+      details: React.js, Vue.js
+    - label: Backend Technologies
+      details: Node.js, Django, GraphQL, Effect.js
+    - label: Databases
+      details: PostgreSQL, MongoDB, Redis
+    - label: Cloud Platforms
+      details: Azure, AWS
+    - label: DevOps & Tools
+      details: Docker, Git, Bitbucket, CI/CD Pipelines
+    certifications:
+    - name: '[AWS Certified Developer Associate (DVA-C02)](https://www.credly.com/badges/2d0a27f6-7536-4558-b47e-35d525458e68/linked_in_profile)'
+      date: '2025'
+    - name: '[Microsoft Certified: Azure Fundamentals](https://www.credly.com/badges/505bf70b-c886-41a5-9367-c4a22e7eecf5/public_url)'
+      date: '2022'
+    - name: '[IELTS Certificate (Score 6.5) – Issued by IDP](https://my-profile-thinhvqnguyen.s3-ap-southeast-1.amazonaws.com/ielts.jpg)'
+      date: '2020'
+    - name: '[University Bachelor Degree](https://my-profile-thinhvqnguyen.s3.ap-southeast-1.amazonaws.com/diploma.jpg)'
+      date: '2020'
+design:
+  theme: sb2nov
+locale:
+  language: english
+settings:
+  current_date: today
+  render_command:
+    output_folder: rendercv_output
+    typst_path: OUTPUT_FOLDER/cv.typ
+    pdf_path: OUTPUT_FOLDER/cv.pdf
+    markdown_path: OUTPUT_FOLDER/cv.md
+    html_path: OUTPUT_FOLDER/cv.html
+    png_path: OUTPUT_FOLDER/cv.png
